@@ -1,0 +1,41 @@
+.keypad {
+	width: 90%;
+	height: 275px;
+	/*background-color: #8ae8fc;*/
+	margin: 0 auto;
+}
+
+button {
+	border: none;
+	background-color: #87bdff;
+	font-family: inherit;
+	font-size: 130%;
+	width: 55px;
+	height: 45px;
+	border-radius: 8px;
+	margin: 0 calc((270px - 55px * 4) / 3) calc((275px - 45px * 5) / 4) 0;
+ 	color: #fff; 
+ 	transition: all 0.2s;
+}
+
+button:hover {
+	background-color: #65aaff;
+	cursor: pointer;
+}
+
+button:active {
+	background-color: #4397ff;
+}
+
+.last-btn {
+	margin-right: 0;
+}
+
+#zero-btn {
+	width: calc(55px * 2 + calc((270px - 55px * 4) / 3));
+}
+
+#equal-btn {
+	height: calc(45px * 2 + calc((275px - 45px * 5) / 4));
+	position: absolute;
+}

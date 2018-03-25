@@ -6,11 +6,16 @@
 
 html {
 	font-family: 'Orbitron', sans-serif;
+	background-color: #98c6ff;
+	font-size: 14px;
 }
 
 .calculator {
 	height: 410px;
 	width: 300px;
-	background-color: black;
+	background-color: #4397ff;
 	margin: 100px auto 0 auto;
+	border-radius: 20px;
+	padding-top:25px; /* Add padding to aviod margin collapsing */
+	/*box-shadow: 3px 9px 37px 1px #0062dc, inset -5px -4px 10px #0062dc;*/
 }

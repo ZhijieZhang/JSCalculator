@@ -1,0 +1,10 @@
+.output {
+	background-color: #8ae8fc;
+	color: #4397ff;
+	width: 90%;
+	height: 75px;
+	margin: 0px auto 15px auto;
+	padding-right: 10px;
+	border-radius: 8px;
+	text-align: right;
+}
