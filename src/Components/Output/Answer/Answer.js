@@ -3,10 +3,14 @@ import React, {Component} from 'react';
 import './Answer.css';
 
 class Answer extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		return(
 			<div className="answer"> 
-				<p>0</p>
+				<p>{this.props.answer}</p>
 			</div>
 		);
 	}

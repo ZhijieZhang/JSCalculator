@@ -6,11 +6,16 @@ import History from './History/History.js'
 import './Output.css';
 
 class Output extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
+		let {answer, history} = this.props;
 		return(
 			<div className="output">
-				<Answer/>
-				<History/>
+				<Answer answer={answer}/>
+				<History history={history}/>
 			</div>
 		);
 	}

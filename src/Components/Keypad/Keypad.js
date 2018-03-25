@@ -3,9 +3,13 @@ import React, {Component} from 'react';
 import './Keypad.css'
 
 class Keypad extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		return(
-			<div className="keypad">
+			<div onClick={this.props.handleClick} className="keypad">
 				<button>AC</button>
 				<button>&larr;</button>
 				<button>&divide;</button>

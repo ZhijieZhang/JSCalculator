@@ -16,6 +16,7 @@ button {
 	margin: 0 calc((270px - 55px * 4) / 3) calc((275px - 45px * 5) / 4) 0;
  	color: #fff; 
  	transition: all 0.2s;
+ 	outline: none;
 }
 
 button:hover {
