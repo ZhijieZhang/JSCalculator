@@ -3,7 +3,12 @@ function isDigit(input) {
 }
 
 function isOperation(input) {
-	return '+−×÷'.indexOf(input) !== -1;
+	return '+−×÷+-*/'.indexOf(input) !== -1;
+}
+
+function convertOperation(input) {
+	let jsOperator = ['+','-','*','/'];
+	return jsOperator['+−×÷'.indexOf(input)];
 }
 
 export default function handleClick(e) {
@@ -23,6 +28,12 @@ export default function handleClick(e) {
 			};
 		});
 	} else if (isOperation(userInput)) { 
+		let {history: currentHis} = this.state;
+		let lastCharOfHis = currentHis.charAt(currentHis.length-1);
+		
+		if (isOperation(lastCharOfHis)) return; // Prevent situation like 1+++2 from happening
+
+		this.state.history.charAt(this.state.history.length-1)
 		this.setState((prevState) => {
 			let {answer: prevAns, history: prevHis} = prevState;
 
@@ -32,7 +43,7 @@ export default function handleClick(e) {
 								: userInput,
 				history: prevHis === '0' ?
 									'0'
-								: prevHis.concat(userInput)
+								: prevHis.concat(convertOperation(userInput))
 			};
 		})
 	} else if (userInput === 'AC') {
@@ -53,9 +64,9 @@ export default function handleClick(e) {
 								: prevHis.slice(0, prevHis.length-1)
 			};
 		});
-	} else { // userInput === '='
+	} else if (userInput === '=') {
 		this.setState((prevState) => {
-			let {answer: prevAns, history: prevHis} = prevState;
+			let {history: prevHis} = prevState;
 			let result = String(eval(prevHis));
 
 			return {
@@ -63,7 +74,21 @@ export default function handleClick(e) {
 				history: result
 			};
 		});
+	} else { // userInput is .
+		if (this.state.answer.indexOf('.') !== -1) return; // No more than one . in a number
+
+		this.setState((prevState) => {
+			let {answer: prevAns, history: prevHis} = prevState;
+
+			return {
+				answer: prevAns.concat(userInput),
+				history: prevHis.concat(userInput)
+			};
+		})
 	}
+
+	// After user clicks the pad, check if
+
 
 	e.stopPropagation();
 }
