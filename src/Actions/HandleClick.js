@@ -12,6 +12,8 @@ function convertOperation(input) {
 }
 
 export default function handleClick(e) {
+	if (e.target === e.currentTarget) return;
+
 	let userInput = e.target.textContent;
 
 	if (isDigit(userInput)) {
@@ -86,9 +88,6 @@ export default function handleClick(e) {
 			};
 		})
 	}
-
-	// After user clicks the pad, check if
-
 
 	e.stopPropagation();
 }
