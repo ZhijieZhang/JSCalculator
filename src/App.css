@@ -10,12 +10,29 @@ html {
 	font-size: 14px;
 }
 
+.container {
+	height: 100vh;
+	width: 100vw;
+	padding-top:100px;
+}
+
 .calculator {
 	height: 410px;
 	width: 300px;
+	margin: 0 auto;
 	background-color: #4397ff;
-	margin: 100px auto 0 auto;
 	border-radius: 20px;
 	padding-top:25px; /* Add padding to aviod margin collapsing */
-	/*box-shadow: 3px 9px 37px 1px #0062dc, inset -5px -4px 10px #0062dc;*/
+	box-shadow: 1px 6px 25px 1px #0062dc, inset -5px -4px 10px #0062dc;
+}
+
+footer {
+	text-align: center;
+	position: absolute;
+	word-spacing: 5px;
+	font-size: 110%;
+	color: #fff;
+	width: 100%;
+	left: 0px;
+	bottom: 10px;
 }

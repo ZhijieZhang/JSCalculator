@@ -20,10 +20,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="calculator">
-      	<Output {...this.state}/>
-      	<Keypad handleClick={this.handleClick}/>
-      </div>
+    	<div className="container">
+	      <div className="calculator">
+      		<Output {...this.state}/>
+      		<Keypad handleClick={this.handleClick}/>
+      	</div>
+
+      	<footer>Coded By Zhijie Zhang</footer>
+    	</div>
+
     );
   }
 }
