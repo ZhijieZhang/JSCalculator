@@ -24,7 +24,7 @@ export default function handleClick(e) {
 				answer: prevAns === '0' || isOperation(prevAns) ?
 										userInput 
 									: prevAns.concat(userInput),
-				history: prevHis === '0' ?
+				history: prevHis === '0' || prevHis === 'Exceed Digit Limit' ?
 										userInput 
 									: prevHis.concat(userInput)
 			};
@@ -34,6 +34,7 @@ export default function handleClick(e) {
 		let lastCharOfHis = currentHis.charAt(currentHis.length-1);
 		
 		if (isOperation(lastCharOfHis)) return; // Prevent situation like 1+++2 from happening
+		if (currentHis === 'Exceed Digit Limit') return;
 
 		this.state.history.charAt(this.state.history.length-1)
 		this.setState((prevState) => {
@@ -61,15 +62,27 @@ export default function handleClick(e) {
 				answer: prevAns.length === 1 ?
 									'0'
 								: prevAns.slice(0, prevAns.length-1),
-				history: prevHis.length === 1 ?
+				history: prevHis.length === 1 || prevHis.length === 'Exceed Digit Limit' ?
 									'0'
 								: prevHis.slice(0, prevHis.length-1)
 			};
 		});
 	} else if (userInput === '=') {
+		if (this.state.history === 'Exceed Digit Limit') return;
+
 		this.setState((prevState) => {
 			let {history: prevHis} = prevState;
-			let result = String(eval(prevHis));
+			let result = eval(prevHis);
+
+			if (String(result).length > 8) {
+				if (String(result).indexOf('.') !== -1) { // round up to 3 decimals
+					result = result.toFixed(3);
+				} else {
+					result = result.toPrecision(3);
+				}
+				
+			}
+			result = String(result);
 
 			return {
 				answer: result,
@@ -87,6 +100,13 @@ export default function handleClick(e) {
 				history: prevHis.concat(userInput)
 			};
 		})
+	}
+
+	if (this.state.answer.length > 8) {
+		this.setState({
+			answer: '0',
+			history: 'Exceed Digit Limit'
+		});	
 	}
 
 	e.stopPropagation();
